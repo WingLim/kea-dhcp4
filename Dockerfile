@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-RUN apk add --no-cache kea-dhcp4 kea-ctrl-agent \
+RUN apk add --no-cache kea-dhcp4 \
 	&& mkdir -p /run/kea
 
 ENTRYPOINT [ "/usr/sbin/kea-dhcp4" ]
