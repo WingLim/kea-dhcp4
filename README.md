@@ -24,12 +24,13 @@ touch docker-compose.yml
 version: "3"
 services:
   kea-dhcp4:
-  volumes:
-    - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
-    - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
-  restart: always
-  network_mode: host
-  container_name: kea-dhcp4
+    image: winglim/kea-dhcp4
+    volumes:
+        - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
+        - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
+    restart: always
+    network_mode: host
+    container_name: kea-dhcp4
 ```
 
 `conf/kea-dhcp4.conf`:
