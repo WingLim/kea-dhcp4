@@ -74,6 +74,8 @@ For more DHCP4 settings: [https://kea.readthedocs.io/en/kea-1.8.1/arm/dhcp4-srv.
 
 ### Use MariaDB
 
+**NOTICE: I use `kea-admin` to initialize the database, it may take some time, please be patient**
+
 `docker-compose.yml`:
 
 ```yaml
@@ -89,13 +91,16 @@ services:
     container_name: kea-dhcp4
   
   mariadb:
-    image: ghcr.io/linuxserver/mariadb
+    image: yobasystems/alpine-mariadb
     environment:
       - MYSQL_DATABASE=keadhcp4
+      - MYSQL_ROOT_PASSWORD=keapassword
       - MYSQL_USER=keauser
       - MYSQL_PASSWORD=keapassword
     volumes:
-      - '$PWD/conf/db:/config'
+      - '$PWD/conf/db:/var/lib/mysql'
+    ports:
+      - 3306:3306
     restart: always
     container_name: kea-mariadb
 
@@ -106,7 +111,7 @@ Edit `lease-database` part in  `conf/kea-dhcp4.conf`:
 ```json
 "lease-database": {
     "type": "mysql",
-    "host": "kea-mariadb",
+    "host": "127.0.0.1",
     "port": 3306,
     "name": "keadhcp4",
     "user": "keauser",
