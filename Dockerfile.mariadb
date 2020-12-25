@@ -5,6 +5,11 @@ RUN apk add --no-cache kea-dhcp4 kea-admin mariadb-client jq \
 
 COPY scripts/start.sh /etc/kea/start.sh
 
+RUN if [ -d /usr/share/kea/kea/ ];then \
+    mv /usr/share/kea/kea/* /usr/share/kea/ \
+    && rm -r /usr/share/kea/kea/; \
+fi
+
 RUN chmod +x /etc/kea/start.sh
 
 ENTRYPOINT [ "/bin/sh" ]
