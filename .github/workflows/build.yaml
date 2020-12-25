@@ -42,4 +42,4 @@ jobs:
           push: true
           tags: |
             winglim/kea-dhcp4:latest
-            ghcr.io/WingLim/kea-dhcp4:latest
+            ghcr.io/winglim/kea-dhcp4:latest
