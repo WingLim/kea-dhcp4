@@ -6,7 +6,7 @@
 
 Docker image for kea-dhcp4 with amd64, arm64 and arm32v7.
 
-**NOTICE: For building image with arm architecture, I use alpine:edge as base image, it will turn to release version when it includes kea-dhcp package.**
+**NOTICE: For building image with arm architecture, I use alpine:edge as base image, this image will use release version when alpine includes kea-dhcp packages.**
 
 ## Usage
 
@@ -86,12 +86,12 @@ services:
   kea-dhcp4:
     image: ghcr.io/winglim/kea-dhcp4:latest-mariadb
     volumes:
-        - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
-        - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
+      - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
+      - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
     restart: always
     network_mode: host
     container_name: kea-dhcp4
-  
+
   mariadb:
     image: yobasystems/alpine-mariadb
     environment:
@@ -100,15 +100,14 @@ services:
       - MYSQL_USER=keauser
       - MYSQL_PASSWORD=keapassword
     volumes:
-      - '$PWD/conf/db:/var/lib/mysql'
+      - "$PWD/conf/db:/var/lib/mysql"
     ports:
       - 3306:3306
     restart: always
     container_name: kea-mariadb
-
 ```
 
-Edit `lease-database` part in  `conf/kea-dhcp4.conf`:
+Edit `lease-database` part in `conf/kea-dhcp4.conf`:
 
 ```json
 "lease-database": {
