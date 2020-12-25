@@ -18,6 +18,8 @@ services:
       - MYSQL_ROOT_PASSWORD=keapassword
       - MYSQL_USER=keauser
       - MYSQL_PASSWORD=keapassword
+    volumes:
+      - '$PWD/conf/db:/var/lib/mysql'
     ports:
       - 3306:3306
     restart: always
