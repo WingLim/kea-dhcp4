@@ -1,0 +1,16 @@
+FROM alpine:3
+
+RUN wget https://dl.cloudsmith.io/public/isc/kea-1-8/cfg/rsa/rsa.1570C74FEAD03977.key \
+    -O /etc/apk/keys/kea-1-8@isc-1570C74FEAD03977.rsa.pub \
+    && echo https://dl.cloudsmith.io/public/isc/kea-1-8/alpine/v3.10/main \
+    >> /etc/apk/repositories
+
+RUN apk add --no-cache isc-kea-dhcp4 isc-kea-admin mariadb-client jq
+
+COPY scripts/start.sh /etc/kea/start.sh
+
+RUN chmod +x /etc/kea/start.sh
+
+ENTRYPOINT [ "/bin/sh" ]
+
+CMD [ "-e", "/etc/kea/start.sh" ]

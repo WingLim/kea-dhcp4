@@ -43,3 +43,14 @@ jobs:
           tags: |
             winglim/kea-dhcp4:latest
             ghcr.io/winglim/kea-dhcp4:latest
+      -
+        name: Build kea-dhcp4 With MariaDB
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile.mariadb
+          platforms: linux/amd64,linux/arm64,linux/arm
+          push: true
+          tags: |
+            winglim/kea-dhcp4:latest-mariadb
+            ghcr.io/winglim/kea-dhcp4:latest-mariadb
