@@ -1,11 +1,7 @@
-FROM alpine:3
+FROM alpine:edge
 
-RUN wget https://dl.cloudsmith.io/public/isc/kea-1-8/cfg/rsa/rsa.1570C74FEAD03977.key \
-    -O /etc/apk/keys/kea-1-8@isc-1570C74FEAD03977.rsa.pub \
-    && echo https://dl.cloudsmith.io/public/isc/kea-1-8/alpine/v3.10/main \
-    >> /etc/apk/repositories
-
-RUN apk add --no-cache isc-kea-dhcp4
+RUN apk add --no-cache kea-dhcp4 \
+    && mkdir -p /run/kea
 
 ENTRYPOINT [ "/usr/sbin/kea-dhcp4" ]
 
