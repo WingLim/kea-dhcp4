@@ -1,6 +1,8 @@
 # kea-dhcp4
 
 ![build](https://github.com/WingLim/kea-dhcp4/workflows/build/badge.svg)
+[![Docker Pulls](https://img.shields.io/docker/pulls/winglim/kea-dhcp4?logo=docker)](https://hub.docker.com/r/winglim/kea-dhcp4)
+[![github package](https://img.shields.io/static/v1?label=WingLim&message=GITHUB%20PACKAGE&color=blue&logo=github)](https://github.com/users/WingLim/packages/container/package/kea-dhcp4)
 
 Docker image for kea-dhcp4 with amd64, arm64 and arm32v7.
 
@@ -26,10 +28,10 @@ touch docker-compose.yml
 version: "3"
 services:
   kea-dhcp4:
-    image: winglim/kea-dhcp4
+    image: ghcr.io/winglim/kea-dhcp4
     volumes:
-        - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
-        - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
+      - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
+      - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
     restart: always
     network_mode: host
     container_name: kea-dhcp4
@@ -67,5 +69,47 @@ For more DHCP4 settings: [https://kea.readthedocs.io/en/kea-1.8.1/arm/dhcp4-srv.
       }
     ]
   }
+}
+```
+
+### Use MariaDB
+
+`docker-compose.yml`:
+
+```yaml
+version: "3"
+services:
+  kea-dhcp4:
+    image: ghcr.io/winglim/kea-dhcp4
+    volumes:
+        - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
+        - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
+    restart: always
+    network_mode: host
+    container_name: kea-dhcp4
+  
+  mariadb:
+    image: ghcr.io/linuxserver/mariadb
+    environment:
+      - MYSQL_DATABASE=keadhcp4
+      - MYSQL_USER=keauser
+      - MYSQL_PASSWORD=keapassword
+    volumes:
+      - '$PWD/conf/db:/config'
+    restart: always
+    container_name: kea-mariadb
+
+```
+
+Edit `lease-database` part in  `conf/kea-dhcp4.conf`:
+
+```json
+"lease-database": {
+    "type": "mysql",
+    "host": "kea-mariadb",
+    "port": 3306,
+    "name": "keadhcp4",
+    "user": "keauser",
+    "password": "keapassword"
 }
 ```

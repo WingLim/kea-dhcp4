@@ -8,3 +8,14 @@ services:
     restart: always
     network_mode: host
     container_name: kea-dhcp4
+  
+  mariadb:
+    image: ghcr.io/linuxserver/mariadb
+    environment:
+      - MYSQL_DATABASE=keadhcp4
+      - MYSQL_USER=keauser
+      - MYSQL_PASSWORD=keapassword
+    volumes:
+      - '$PWD/conf/db:/config'
+    restart: always
+    container_name: kea-mariadb
