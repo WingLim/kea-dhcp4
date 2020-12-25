@@ -34,7 +34,7 @@ services:
 
 `conf/kea-dhcp4.conf`:
 
-For more DHCP4 settings: https://kea.readthedocs.io/en/kea-1.8.1/arm/dhcp4-srv.html
+For more DHCP4 settings: [https://kea.readthedocs.io/en/kea-1.8.1/arm/dhcp4-srv.html](https://kea.readthedocs.io/en/kea-1.8.1/arm/dhcp4-srv.html)
 
 ```json
 {
