@@ -4,6 +4,8 @@
 
 Docker image for kea-dhcp4 with amd64, arm64 and arm32v7.
 
+**NOTICE: For building image with arm architecture, I use alpine:edge as base image, it will turn to release version when it includes kea-dhcp package.**
+
 ## Usage
 
 ### Use memfile
