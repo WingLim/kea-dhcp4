@@ -1,7 +1,9 @@
 version: '3'
 services:
   kea-dhcp4:
-    image: winglim/kea-dhcp4
+    image: ghcr.io/winglim/kea-dhcp4
+    # use latest-mariadb tag
+    # image: ghcr.io/winglim/kea-dhcp4:latest-mariadb
     volumes:
       - '$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf'
       - '$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases'

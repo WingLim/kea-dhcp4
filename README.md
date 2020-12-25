@@ -78,11 +78,13 @@ For more DHCP4 settings: [https://kea.readthedocs.io/en/kea-1.8.1/arm/dhcp4-srv.
 
 `docker-compose.yml`:
 
+Use `latest-mariadb` tag.
+
 ```yaml
 version: "3"
 services:
   kea-dhcp4:
-    image: ghcr.io/winglim/kea-dhcp4
+    image: ghcr.io/winglim/kea-dhcp4:latest-mariadb
     volumes:
         - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
         - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
