@@ -2,7 +2,9 @@
 
 ![build](https://github.com/WingLim/kea-dhcp4/workflows/build/badge.svg)
 [![Docker Pulls](https://img.shields.io/docker/pulls/winglim/kea-dhcp4?logo=docker)](https://hub.docker.com/r/winglim/kea-dhcp4)
-[![github package](https://img.shields.io/static/v1?label=WingLim&message=GITHUB%20PACKAGE&color=blue&logo=github)](https://github.com/users/WingLim/packages/container/package/kea-dhcp4)
+[![Github Package](https://img.shields.io/static/v1?label=WingLim&message=Github%20Package&color=blue&logo=github)](https://github.com/users/WingLim/packages/container/package/kea-dhcp4)
+![Docker Image Size (latest)](https://img.shields.io/docker/image-size/winglim/kea-dhcp4/latest?label=latest%20size)
+![Docker Image Size (latest-db)](https://img.shields.io/docker/image-size/winglim/kea-dhcp4/latest-db?label=latest-db%20size)
 
 Docker image for kea-dhcp4 with amd64, arm64 and arm32v7.
 
