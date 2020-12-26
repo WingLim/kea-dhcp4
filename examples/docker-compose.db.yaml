@@ -1,7 +1,7 @@
 version: '3'
 services:
   kea-dhcp4:
-    image: ghcr.io/winglim/kea-dhcp4:latest-mariadb
+    image: ghcr.io/winglim/kea-dhcp4:latest-db
     volumes:
       - '$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf'
     restart: always

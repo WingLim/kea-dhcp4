@@ -2,7 +2,7 @@
 
 while ! nc -z $DBHOST 3306; do
     sleep 5s
-    echo "Waiting for MariaDB..."
+    echo "Waiting for DataBase..."
 done
 
 dbinited_path="/etc/kea/.dbinited"

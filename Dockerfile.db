@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-RUN apk add --no-cache kea-dhcp4 kea-admin mariadb-client jq \
+RUN apk add --no-cache kea-dhcp4 kea-admin mariadb-client postgresql-client jq \
     && mkdir -p /run/kea
 
 COPY scripts/start.sh /etc/kea/start.sh

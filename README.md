@@ -22,7 +22,7 @@ touch dhcp4.leases
 touch docker-compose.yml
 ```
 
-`docker-compose.yml`(same as `examples/docker-compose.memfile.yaml`):
+`docker-compose.yml`(same as `examples/docker-compose.file.yaml`):
 
 ```yaml
 version: "3"
@@ -74,23 +74,23 @@ For more DHCP4 settings: [https://kea.readthedocs.io/en/kea-1.8.1/arm/dhcp4-srv.
 }
 ```
 
-### Use MariaDB
+### Use MariaDB or PostgreSQL
 
 **NOTICE1: I use `kea-admin` to initialize the database, it may take some time, please be patient**
 
-**NOTICE2: I use `jq` to parse `kea-dhcp4.conf` to init mariadb for kea-dhcp, jq CAN NOT parse json with comment, so you need to delete all comments.**
+**NOTICE2: I use `jq` to parse `kea-dhcp4.conf` to init database for kea-dhcp, jq CAN NOT parse json with comment, so you need to delete all comments.**
 
-`docker-compose.yml`(same as `examples/docker-compose.mariadb.yaml`):
+`docker-compose.yml`(same as `examples/docker-compose.db.yaml`):
 
-Use `latest-mariadb` tag.
+Use `latest-db` tag.
 
 ```yaml
 version: "3"
 services:
   kea-dhcp4:
-    image: ghcr.io/winglim/kea-dhcp4:latest-mariadb
+    image: ghcr.io/winglim/kea-dhcp4:latest-db
     # use docker hub
-    # image: winglim/kea-dhcp4:latest-mariadb
+    # image: winglim/kea-dhcp4:latest-db
     volumes:
       - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
       - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
