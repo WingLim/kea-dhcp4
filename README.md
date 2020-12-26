@@ -74,7 +74,9 @@ For more DHCP4 settings: [https://kea.readthedocs.io/en/kea-1.8.1/arm/dhcp4-srv.
 
 ### Use MariaDB
 
-**NOTICE: I use `kea-admin` to initialize the database, it may take some time, please be patient**
+**NOTICE1: I use `kea-admin` to initialize the database, it may take some time, please be patient**
+
+**NOTICE2: I use `jq` to parse `kea-dhcp4.conf` to init mariadb for kea-dhcp, jq CAN NOT parse json with comment, so you need to delete all comments.**
 
 `docker-compose.yml`:
 
