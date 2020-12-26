@@ -76,7 +76,7 @@ For more DHCP4 settings: [https://kea.readthedocs.io/en/kea-1.8.1/arm/dhcp4-srv.
 
 ### Use MariaDB or PostgreSQL
 
-**NOTICE1: I use `kea-admin` to initialize the database, it may take some time, please be patient**
+**NOTICE1: I use `kea-admin` to initialize the database, it may take some time, please be patient.**
 
 **NOTICE2: I use `jq` to parse `kea-dhcp4.conf` to init database for kea-dhcp, jq CAN NOT parse json with comment, so you need to delete all comments.**
 
@@ -93,10 +93,11 @@ services:
     # image: winglim/kea-dhcp4:latest-db
     volumes:
       - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
-      - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
     restart: always
     network_mode: host
     container_name: kea-dhcp4
+    depends_on: 
+      - mariadb
 
   mariadb:
     image: yobasystems/alpine-mariadb
