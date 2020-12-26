@@ -6,7 +6,7 @@
 
 Docker image for kea-dhcp4 with amd64, arm64 and arm32v7.
 
-**NOTICE: For building image with arm architecture, I use alpine:edge as base image, this image will use release version when alpine includes kea-dhcp packages.**
+**NOTICE: For building image with arm architecture, I use `alpine:edge` as base image, this image will use release version when alpine includes kea-dhcp packages.**
 
 ## Usage
 
@@ -22,13 +22,15 @@ touch dhcp4.leases
 touch docker-compose.yml
 ```
 
-`docker-compose.yml`:
+`docker-compose.yml`(same as `examples/docker-compose.memfile.yaml`):
 
 ```yaml
 version: "3"
 services:
   kea-dhcp4:
     image: ghcr.io/winglim/kea-dhcp4
+    # use docker hub
+    # image: winglim/kea-dhcp4
     volumes:
       - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
       - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
@@ -78,7 +80,7 @@ For more DHCP4 settings: [https://kea.readthedocs.io/en/kea-1.8.1/arm/dhcp4-srv.
 
 **NOTICE2: I use `jq` to parse `kea-dhcp4.conf` to init mariadb for kea-dhcp, jq CAN NOT parse json with comment, so you need to delete all comments.**
 
-`docker-compose.yml`:
+`docker-compose.yml`(same as `examples/docker-compose.mariadb.yaml`):
 
 Use `latest-mariadb` tag.
 
@@ -87,6 +89,8 @@ version: "3"
 services:
   kea-dhcp4:
     image: ghcr.io/winglim/kea-dhcp4:latest-mariadb
+    # use docker hub
+    # image: winglim/kea-dhcp4:latest-mariadb
     volumes:
       - "$PWD/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf"
       - "$PWD/conf/dhcp4.leases:/var/lib/kea/dhcp4.leases"
