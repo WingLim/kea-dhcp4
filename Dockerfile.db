@@ -1,15 +1,9 @@
-FROM alpine:edge
+FROM alpine:3.13
 
 RUN apk add --no-cache kea-dhcp4 kea-admin mariadb-client postgresql-client jq \
     && mkdir -p /run/kea
 
 COPY scripts/start.sh /etc/kea/start.sh
-
-# fix kea-admin scripts path
-RUN if [ -d /usr/share/kea/kea/ ];then \
-    mv /usr/share/kea/kea/* /usr/share/kea/ \
-    && rm -r /usr/share/kea/kea/; \
-fi
 
 RUN chmod +x /etc/kea/start.sh
 
